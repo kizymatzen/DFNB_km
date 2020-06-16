@@ -1,6 +1,6 @@
 /********************************************************************************************
-NAME:    [dbo].[v_cust_since]
-PURPOSE: Create the [dbo].[v_cust_since] view
+NAME:    [dbo].[v_acct_gender_bal]
+PURPOSE: Create the [dbo].[v_acct_gender_bal] view
 
 SUPPORT: Kizy Matzenbacher
          kizymatzen@gmail.com
@@ -26,29 +26,33 @@ distributed under the same license terms.
 USE [DFNB2]
 GO
 
-/****** Object:  View [dbo].[v_cust_since]    Script Date: 6/16/2020 10:17:06 AM ******/
-DROP VIEW [dbo].[v_cust_since]
+/****** Object:  View [dbo].[v_acct_gender_bal]    Script Date: 6/16/2020 12:27:31 PM ******/
+DROP VIEW [dbo].[v_acct_gender_bal]
 GO
 
-/****** Object:  View [dbo].[v_cust_since]    Script Date: 6/16/2020 10:17:06 AM ******/
+/****** Object:  View [dbo].[v_acct_gender_bal]    Script Date: 6/16/2020 12:27:31 PM ******/
 SET ANSI_NULLS ON
 GO
 
 SET QUOTED_IDENTIFIER ON
 GO
 
-CREATE VIEW [dbo].[v_cust_since]
+
+CREATE VIEW [dbo].[v_acct_gender_bal]
 AS
      SELECT DISTINCT 
-            acct_id AS 'Account ID'
-          , first_name AS 'First Name'
-          , last_name AS 'Last Name'
-          , gender
+            taf.acct_id AS 'Account ID'
+          , c.gender
           , DATEDIFF(YY, birth_date, GETDATE()) AS Age
-          , YEAR(cust_since_date) AS 'Customer Since Year'
+          , YEAR(ca.cust_since_date) AS 'Customer Since Year'
+          , taf.cur_bal AS 'Current Balance'
        FROM t_cust_dim AS c
             INNER JOIN
             t_cust_acct_brg AS ca ON c.cust_dim_id = ca.cust_dim_id
+            INNER JOIN
+            dbo.t_acct_fact AS taf ON ca.acct_id = taf.acct_id
+      WHERE YEAR(ca.cust_since_date) >= 2016
+            AND YEAR(ca.cust_since_date) < 2019;
 GO
 
 

@@ -10,7 +10,7 @@ MODIFICATION LOG:
 
 Ver   Date        Author    Description
 ---   ----------  -------   -----------------------------------------------------------------
-1.0   06/12/2020  KIZYKMATZEN   1. Created the table
+1.0   06/15/2020  KIZYKMATZEN   1. Created the table
 
 RUNTIME: 
 
@@ -29,6 +29,18 @@ distributed under the same license terms.
 USE [DFNB2]
 GO
 
+ALTER TABLE [dbo].[t_cust_acct_brg] DROP CONSTRAINT [FK_t_cust_acct_brg_t_cust_dim]
+GO
+
+ALTER TABLE [dbo].[t_cust_acct_brg] DROP CONSTRAINT [FK_t_cust_acct_brg_t_acct_dim]
+GO
+
+/****** Object:  Table [dbo].[t_cust_acct_brg]    Script Date: 6/15/2020 7:24:43 PM ******/
+IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[t_cust_acct_brg]') AND type in (N'U'))
+DROP TABLE [dbo].[t_cust_acct_brg]
+GO
+
+/****** Object:  Table [dbo].[t_cust_acct_brg]    Script Date: 6/15/2020 7:24:43 PM ******/
 SET ANSI_NULLS ON
 GO
 
@@ -56,4 +68,10 @@ GO
 ALTER TABLE [dbo].[t_cust_acct_brg] CHECK CONSTRAINT [FK_t_cust_acct_brg_t_acct_dim]
 GO
 
+ALTER TABLE [dbo].[t_cust_acct_brg]  WITH CHECK ADD  CONSTRAINT [FK_t_cust_acct_brg_t_cust_dim] FOREIGN KEY([cust_dim_id])
+REFERENCES [dbo].[t_cust_dim] ([cust_dim_id])
+GO
+
+ALTER TABLE [dbo].[t_cust_acct_brg] CHECK CONSTRAINT [FK_t_cust_acct_brg_t_cust_dim]
+GO
 

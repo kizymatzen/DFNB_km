@@ -10,7 +10,7 @@ MODIFICATION LOG:
 
 Ver   Date        Author    Description
 ---   ----------  -------   -----------------------------------------------------------------
-1.0   06/11/2020  KIZYKMATZEN   1. Created the table
+1.0   06/16/2020  KIZYKMATZEN   1. Created the table
 
 RUNTIME: 
 
@@ -29,6 +29,18 @@ distributed under the same license terms.
 USE [DFNB2]
 GO
 
+ALTER TABLE [dbo].[t_cust_dim] DROP CONSTRAINT [FK_t_cust_dim_t_prod_dim]
+GO
+
+ALTER TABLE [dbo].[t_cust_dim] DROP CONSTRAINT [FK_t_cust_dim_t_cust_add]
+GO
+
+/****** Object:  Table [dbo].[t_cust_dim]    Script Date: 6/16/2020 9:32:24 AM ******/
+IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[t_cust_dim]') AND type in (N'U'))
+DROP TABLE [dbo].[t_cust_dim]
+GO
+
+/****** Object:  Table [dbo].[t_cust_dim]    Script Date: 6/16/2020 9:32:24 AM ******/
 SET ANSI_NULLS ON
 GO
 
@@ -65,5 +77,6 @@ GO
 
 ALTER TABLE [dbo].[t_cust_dim] CHECK CONSTRAINT [FK_t_cust_dim_t_prod_dim]
 GO
+
 
 

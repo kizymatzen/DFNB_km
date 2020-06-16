@@ -10,7 +10,7 @@ MODIFICATION LOG:
 
 Ver   Date        Author    Description
 ---   ----------  -------   -----------------------------------------------------------------
-1.0   06/12/2020  KIZYKMATZEN   1. Created the table
+1.0   06/15/2020  KIZYKMATZEN   1. Created the table
 
 RUNTIME: 
 
@@ -29,6 +29,12 @@ distributed under the same license terms.
 USE [DFNB2]
 GO
 
+/****** Object:  Table [dbo].[t_cust_add_dim]    Script Date: 6/15/2020 7:36:33 PM ******/
+IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[t_cust_add_dim]') AND type in (N'U'))
+DROP TABLE [dbo].[t_cust_add_dim]
+GO
+
+/****** Object:  Table [dbo].[t_cust_add_dim]    Script Date: 6/15/2020 7:36:33 PM ******/
 SET ANSI_NULLS ON
 GO
 
@@ -46,5 +52,3 @@ CREATE TABLE [dbo].[t_cust_add_dim](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-
-

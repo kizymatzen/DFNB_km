@@ -10,7 +10,7 @@ MODIFICATION LOG:
 
 Ver   Date        Author    Description
 ---   ----------  -------   -----------------------------------------------------------------
-1.0   06/12/2020  KIZYKMATZEN   1. Created the table
+1.0   06/15/2020  KIZYKMATZEN   1. Created the table
 
 RUNTIME: 
 
@@ -29,6 +29,15 @@ distributed under the same license terms.
 USE [DFNB2]
 GO
 
+ALTER TABLE [dbo].[t_acct_fact] DROP CONSTRAINT [FK_t_acct_fact_t_acct_dim]
+GO
+
+/****** Object:  Table [dbo].[t_acct_fact]    Script Date: 6/15/2020 7:18:46 PM ******/
+IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[t_acct_fact]') AND type in (N'U'))
+DROP TABLE [dbo].[t_acct_fact]
+GO
+
+/****** Object:  Table [dbo].[t_acct_fact]    Script Date: 6/15/2020 7:18:46 PM ******/
 SET ANSI_NULLS ON
 GO
 
@@ -53,5 +62,4 @@ GO
 
 ALTER TABLE [dbo].[t_acct_fact] CHECK CONSTRAINT [FK_t_acct_fact_t_acct_dim]
 GO
-
 

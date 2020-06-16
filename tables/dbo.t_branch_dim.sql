@@ -10,7 +10,7 @@ MODIFICATION LOG:
 
 Ver   Date        Author    Description
 ---   ----------  -------   -----------------------------------------------------------------
-1.0   06/12/2020  KIZYKMATZEN   1. Created the table
+1.0   06/15/2020  KIZYKMATZEN   1. Created the table
 
 RUNTIME: 
 
@@ -29,6 +29,18 @@ distributed under the same license terms.
 USE [DFNB2]
 GO
 
+ALTER TABLE [dbo].[t_branch_dim] DROP CONSTRAINT [FK_t_branch_dim_t_region]
+GO
+
+ALTER TABLE [dbo].[t_branch_dim] DROP CONSTRAINT [FK_t_branch_dim_t_area]
+GO
+
+/****** Object:  Table [dbo].[t_branch_dim]    Script Date: 6/15/2020 7:23:18 PM ******/
+IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[t_branch_dim]') AND type in (N'U'))
+DROP TABLE [dbo].[t_branch_dim]
+GO
+
+/****** Object:  Table [dbo].[t_branch_dim]    Script Date: 6/15/2020 7:23:18 PM ******/
 SET ANSI_NULLS ON
 GO
 

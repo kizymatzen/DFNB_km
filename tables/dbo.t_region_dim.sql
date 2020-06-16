@@ -1,16 +1,21 @@
 /********************************************************************************************
 NAME:    [dbo].[t_region_dim]
 PURPOSE: Create the [dbo].[t_region_dim] table
+
 SUPPORT: Kizy Matzenbacher
 	     kizymatzen@gmail.com
+
 MODIFICATION LOG:
 Ver   Date        Author    Description
 ---   ----------  -------   -----------------------------------------------------------------
 1.0   06/16/2020  KIZYKMATZEN   1. Created the table
+
 RUNTIME: 
 1 min
+
 NOTES: 
 (None)
+
 LICENSE: 
 This code is covered by the GNU General Public License which guarantees end users
 the freedom to run, study, share, and modify the code. This license grants the recipients

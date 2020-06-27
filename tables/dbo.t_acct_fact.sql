@@ -8,9 +8,10 @@ SUPPORT: Kizy Matzenbacher
 
 MODIFICATION LOG:
 
-Ver   Date        Author    Description
----   ----------  -------   -----------------------------------------------------------------
-1.0   06/15/2020  KIZYKMATZEN   1. Created the table
+Ver   Date        Author       Description
+---   ----------  -------      -----------------------------------------------------------------
+1.0   06/15/2020  KIZYMATZEN   1. Created the table
+1.2   06/26/2020  KIZYMATZEN   2. Updated the table
 
 RUNTIME: 
 
@@ -32,12 +33,12 @@ GO
 ALTER TABLE [dbo].[t_acct_fact] DROP CONSTRAINT [FK_t_acct_fact_t_acct_dim]
 GO
 
-/****** Object:  Table [dbo].[t_acct_fact]    Script Date: 6/15/2020 7:18:46 PM ******/
+/****** Object:  Table [dbo].[t_acct_fact]    Script Date: 6/26/2020 9:36:34 PM ******/
 IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[t_acct_fact]') AND type in (N'U'))
 DROP TABLE [dbo].[t_acct_fact]
 GO
 
-/****** Object:  Table [dbo].[t_acct_fact]    Script Date: 6/15/2020 7:18:46 PM ******/
+/****** Object:  Table [dbo].[t_acct_fact]    Script Date: 6/26/2020 9:36:34 PM ******/
 SET ANSI_NULLS ON
 GO
 
@@ -45,11 +46,11 @@ SET QUOTED_IDENTIFIER ON
 GO
 
 CREATE TABLE [dbo].[t_acct_fact](
-	[acct_fact_id] [int] IDENTITY(1,1) NOT NULL,
+	[acct_fact_id] [int] IDENTITY(4,4) NOT NULL,
 	[acct_id] [int] NOT NULL,
-	[as_of_date] [date] NOT NULL,
-	[cur_bal] [decimal](20, 4) NOT NULL,
- CONSTRAINT [PK_t_acct_fact] PRIMARY KEY CLUSTERED 
+	[acct_as_of_date] [date] NOT NULL,
+	[acct_cur_bal] [decimal](20, 4) NOT NULL,
+PRIMARY KEY CLUSTERED 
 (
 	[acct_fact_id] ASC
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]

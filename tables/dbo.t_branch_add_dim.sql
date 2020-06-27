@@ -10,7 +10,8 @@ MODIFICATION LOG:
 
 Ver   Date        Author    Description
 ---   ----------  -------   -----------------------------------------------------------------
-1.0   06/15/2020  KIZYKMATZEN   1. Created the table
+1.0   06/15/2020  KIZYMATZEN   1. Created the table
+1.2   06/26/2020  KIZYMATZEN   2. Updated the table
 
 RUNTIME: 
 
@@ -29,15 +30,15 @@ distributed under the same license terms.
 USE [DFNB2]
 GO
 
-ALTER TABLE [dbo].[t_branch_add_dim] DROP CONSTRAINT [FK_t_branch_add_t_branch_dim]
+ALTER TABLE [dbo].[t_branch_add_dim] DROP CONSTRAINT [FK_t_branch_add_dim_t_branch_dim]
 GO
 
-/****** Object:  Table [dbo].[t_branch_add_dim]    Script Date: 6/15/2020 7:22:07 PM ******/
+/****** Object:  Table [dbo].[t_branch_add_dim]    Script Date: 6/26/2020 9:45:33 PM ******/
 IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[t_branch_add_dim]') AND type in (N'U'))
 DROP TABLE [dbo].[t_branch_add_dim]
 GO
 
-/****** Object:  Table [dbo].[t_branch_add_dim]    Script Date: 6/15/2020 7:22:07 PM ******/
+/****** Object:  Table [dbo].[t_branch_add_dim]    Script Date: 6/26/2020 9:45:33 PM ******/
 SET ANSI_NULLS ON
 GO
 
@@ -58,11 +59,11 @@ CREATE TABLE [dbo].[t_branch_add_dim](
 ) ON [PRIMARY]
 GO
 
-ALTER TABLE [dbo].[t_branch_add_dim]  WITH CHECK ADD  CONSTRAINT [FK_t_branch_add_t_branch_dim] FOREIGN KEY([branch_id])
+ALTER TABLE [dbo].[t_branch_add_dim]  WITH CHECK ADD  CONSTRAINT [FK_t_branch_add_dim_t_branch_dim] FOREIGN KEY([branch_id])
 REFERENCES [dbo].[t_branch_dim] ([branch_id])
 GO
 
-ALTER TABLE [dbo].[t_branch_add_dim] CHECK CONSTRAINT [FK_t_branch_add_t_branch_dim]
+ALTER TABLE [dbo].[t_branch_add_dim] CHECK CONSTRAINT [FK_t_branch_add_dim_t_branch_dim]
 GO
 
 

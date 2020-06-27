@@ -10,7 +10,8 @@ MODIFICATION LOG:
 
 Ver   Date        Author    Description
 ---   ----------  -------   -----------------------------------------------------------------
-1.0   06/16/2020  KIZYKMATZEN   1. Created the table
+1.0   06/16/2020  KIZYMATZEN   1. Created the table
+1.2   06/26/2020  KIZYMATZEN   2. Updated the table
 
 RUNTIME: 
 
@@ -29,28 +30,39 @@ distributed under the same license terms.
 USE [DFNB2]
 GO
 
-/****** Object:  Table [dbo].[t_cust_role_dim]    Script Date: 6/16/2020 9:39:32 AM ******/
-IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[t_cust_role_dim]') AND type in (N'U'))
-DROP TABLE [dbo].[t_cust_role_dim]
+ALTER TABLE [dbo].[t_role_dim] DROP CONSTRAINT [FK_t_role_dim_t_cust_dim]
 GO
 
-/****** Object:  Table [dbo].[t_cust_role_dim]    Script Date: 6/16/2020 9:39:32 AM ******/
+/****** Object:  Table [dbo].[t_role_dim]    Script Date: 6/26/2020 10:12:24 PM ******/
+IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[t_role_dim]') AND type in (N'U'))
+DROP TABLE [dbo].[t_role_dim]
+GO
+
+/****** Object:  Table [dbo].[t_role_dim]    Script Date: 6/26/2020 10:12:24 PM ******/
 SET ANSI_NULLS ON
 GO
 
 SET QUOTED_IDENTIFIER ON
 GO
 
-CREATE TABLE [dbo].[t_cust_role_dim](
-	[cust_role_id] [smallint] IDENTITY(1,1) NOT NULL,
+CREATE TABLE [dbo].[t_role_dim](
+	[role_id] [int] IDENTITY(4,6) NOT NULL,
 	[role_cust_id] [smallint] NOT NULL,
-	[pri_cust_id] [smallint] NOT NULL,
-	[sec_cust_id] [nchar](10) NULL,
- CONSTRAINT [PK_t_acct_cust_role] PRIMARY KEY CLUSTERED 
+	[role_pri_id] [smallint] NOT NULL,
+	[role_sec_id] [smallint] NULL,
+	[cust_id] [smallint] NOT NULL,
+PRIMARY KEY CLUSTERED 
 (
-	[cust_role_id] ASC
+	[role_id] ASC
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
+GO
+
+ALTER TABLE [dbo].[t_role_dim]  WITH CHECK ADD  CONSTRAINT [FK_t_role_dim_t_cust_dim] FOREIGN KEY([cust_id])
+REFERENCES [dbo].[t_cust_dim] ([cust_id])
+GO
+
+ALTER TABLE [dbo].[t_role_dim] CHECK CONSTRAINT [FK_t_role_dim_t_cust_dim]
 GO
 
 

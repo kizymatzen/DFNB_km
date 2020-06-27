@@ -10,7 +10,8 @@ MODIFICATION LOG:
 
 Ver   Date        Author    Description
 ---   ----------  -------   -----------------------------------------------------------------
-1.0   06/16/2020  KIZYKMATZEN   1. Created the table
+1.0   06/16/2020  KIZYMATZEN   1. Created the table
+1.2   06/26/2020  KIZYMATZEN   2. Updated the table
 
 RUNTIME: 
 
@@ -29,18 +30,15 @@ distributed under the same license terms.
 USE [DFNB2]
 GO
 
-ALTER TABLE [dbo].[t_cust_dim] DROP CONSTRAINT [FK_t_cust_dim_t_prod_dim]
+ALTER TABLE [dbo].[t_cust_dim] DROP CONSTRAINT [FK_t_cust_dim_t_cust_add_dim]
 GO
 
-ALTER TABLE [dbo].[t_cust_dim] DROP CONSTRAINT [FK_t_cust_dim_t_cust_add]
-GO
-
-/****** Object:  Table [dbo].[t_cust_dim]    Script Date: 6/16/2020 9:32:24 AM ******/
+/****** Object:  Table [dbo].[t_cust_dim]    Script Date: 6/26/2020 9:57:15 PM ******/
 IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[t_cust_dim]') AND type in (N'U'))
 DROP TABLE [dbo].[t_cust_dim]
 GO
 
-/****** Object:  Table [dbo].[t_cust_dim]    Script Date: 6/16/2020 9:32:24 AM ******/
+/****** Object:  Table [dbo].[t_cust_dim]    Script Date: 6/26/2020 9:57:15 PM ******/
 SET ANSI_NULLS ON
 GO
 
@@ -48,35 +46,23 @@ SET QUOTED_IDENTIFIER ON
 GO
 
 CREATE TABLE [dbo].[t_cust_dim](
-	[cust_dim_id] [smallint] IDENTITY(1,1) NOT NULL,
 	[cust_id] [smallint] NOT NULL,
-	[first_name] [varchar](100) NOT NULL,
-	[last_name] [varchar](100) NOT NULL,
-	[birth_date] [date] NOT NULL,
-	[gender] [varchar](1) NOT NULL,
-	[prod_dim_id] [smallint] NULL,
+	[cust_first_name] [varchar](100) NOT NULL,
+	[cust_last_name] [varchar](100) NOT NULL,
+	[cust_birth_date] [date] NOT NULL,
+	[cust_gender] [varchar](1) NOT NULL,
 	[cust_add_id] [int] NOT NULL,
-	[pri_branch_id] [smallint] NOT NULL,
- CONSTRAINT [PK_t_cust_dim] PRIMARY KEY CLUSTERED 
+	[cust_pri_branch_id] [smallint] NOT NULL,
+ CONSTRAINT [PK__t_cust_d__A1B71F9013E2E872] PRIMARY KEY CLUSTERED 
 (
-	[cust_dim_id] ASC
+	[cust_id] ASC
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
 
-ALTER TABLE [dbo].[t_cust_dim]  WITH CHECK ADD  CONSTRAINT [FK_t_cust_dim_t_cust_add] FOREIGN KEY([cust_add_id])
+ALTER TABLE [dbo].[t_cust_dim]  WITH CHECK ADD  CONSTRAINT [FK_t_cust_dim_t_cust_add_dim] FOREIGN KEY([cust_add_id])
 REFERENCES [dbo].[t_cust_add_dim] ([cust_add_id])
 GO
 
-ALTER TABLE [dbo].[t_cust_dim] CHECK CONSTRAINT [FK_t_cust_dim_t_cust_add]
+ALTER TABLE [dbo].[t_cust_dim] CHECK CONSTRAINT [FK_t_cust_dim_t_cust_add_dim]
 GO
-
-ALTER TABLE [dbo].[t_cust_dim]  WITH CHECK ADD  CONSTRAINT [FK_t_cust_dim_t_prod_dim] FOREIGN KEY([prod_dim_id])
-REFERENCES [dbo].[t_prod_dim] ([prod_dim_id])
-GO
-
-ALTER TABLE [dbo].[t_cust_dim] CHECK CONSTRAINT [FK_t_cust_dim_t_prod_dim]
-GO
-
-
-

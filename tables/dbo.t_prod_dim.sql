@@ -10,7 +10,8 @@ MODIFICATION LOG:
 
 Ver   Date        Author    Description
 ---   ----------  -------   -----------------------------------------------------------------
-1.0   06/16/2020  KIZYKMATZEN   1. Created the table
+1.0   06/16/2020  KIZYMATZEN   1. Created the table
+1.2   06/26/2020  KIZYMATZEN   2. Updated the table  
 
 RUNTIME: 
 
@@ -29,12 +30,12 @@ distributed under the same license terms.
 USE [DFNB2]
 GO
 
-/****** Object:  Table [dbo].[t_prod_dim]    Script Date: 6/16/2020 9:46:51 AM ******/
+/****** Object:  Table [dbo].[t_prod_dim]    Script Date: 6/26/2020 10:05:28 PM ******/
 IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[t_prod_dim]') AND type in (N'U'))
 DROP TABLE [dbo].[t_prod_dim]
 GO
 
-/****** Object:  Table [dbo].[t_prod_dim]    Script Date: 6/16/2020 9:46:51 AM ******/
+/****** Object:  Table [dbo].[t_prod_dim]    Script Date: 6/26/2020 10:05:28 PM ******/
 SET ANSI_NULLS ON
 GO
 
@@ -42,12 +43,12 @@ SET QUOTED_IDENTIFIER ON
 GO
 
 CREATE TABLE [dbo].[t_prod_dim](
-	[prod_dim_id] [smallint] IDENTITY(1,1) NOT NULL,
 	[prod_id] [smallint] NOT NULL,
-	[cust_id] [smallint] NOT NULL,
- CONSTRAINT [PK_t_prod_dim] PRIMARY KEY CLUSTERED 
+	[prod_name] [varchar](100) NULL,
+	[prod_desc] [varchar](200) NULL,
+PRIMARY KEY CLUSTERED 
 (
-	[prod_dim_id] ASC
+	[prod_id] ASC
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO

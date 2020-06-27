@@ -1,6 +1,6 @@
 /********************************************************************************************
-NAME:    data_loading
-PURPOSE: Load data model from dbo.stg_p1 to DFNB2 database and assign keys
+NAME:   LoadDFNB_p2
+PURPOSE: Load data model from dbo.stg_p2 to DFNB2 database and assign keys
 
 SUPPORT: Kizy Matzenbacher
          kizymatzen@gmail.com
@@ -8,8 +8,7 @@ SUPPORT: Kizy Matzenbacher
 MODIFICATION LOG:
 Ver   Date        Author    Description
 ---   ----------  -------   -----------------------------------------------------------------
-1.0   06/16/2020  KIZYMATZEN   1. Script creation
-1.2   06/26/2020  KIZYMATZEN   2. Updated the script
+1.0   06/26/2020  KIZYMATZEN   1. Script creation
 
 RUNTIME: 
 1 min

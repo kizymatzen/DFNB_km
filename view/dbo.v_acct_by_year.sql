@@ -49,7 +49,7 @@ SELECT        TOP (100) PERCENT COUNT(c.acct_id) AS [Number of Accounts], YEAR(c
 FROM            dbo.t_cust_acct_brg AS ca INNER JOIN
                          dbo.t_acct_dim AS c ON ca.acct_id = c.acct_id
 GROUP BY YEAR(ca.cust_since_date)
-ORDER BY [Customer Since Year]
+
 GO
 
 EXEC sys.sp_addextendedproperty @name=N'MS_DiagramPane1', @value=N'[0E232FF0-B466-11cf-A24F-00AA00A3EFFF, 1.00]

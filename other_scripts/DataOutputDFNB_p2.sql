@@ -129,5 +129,5 @@ ORDER BY 1;
 USE [DFNB2];
 SELECT *
 FROM [dbo].[v_tran_type_qty]
-ORDER BY 1;
+ORDER BY 1
 

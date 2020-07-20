@@ -1,0 +1,45 @@
+USE [DFNB2]
+GO
+
+/****** Object:  Table [dbo].[t_loan_fact]    Script Date: 7/9/2020 9:33:31 PM ******/
+IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[t_loan_fact]') AND type in (N'U'))
+DROP TABLE [dbo].[t_loan_fact]
+GO
+
+/****** Object:  Table [dbo].[t_loan_fact]    Script Date: 7/9/2020 9:33:31 PM ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE TABLE [dbo].[t_loan_fact](
+	[loan_fact_id] [int] IDENTITY(1,7) NOT NULL,
+	[loan_amt] [decimal](20, 4) NOT NULL,
+	acct_id INT NOT NULL,
+	cust_id SMALLINT NOT NULL,
+	branch_add_id INT NOT NULL,
+	status_ID INT NOT NULL,
+	loan_id SMALLINT NOT NULL,
+	payment_id INT NOT NULL
+
+INSERT INTO dbo.t_loan_fact
+(loan_amt, acct_id, cust_id, branch_add_id, branch_add_id, status_id, loan_id, payment_id)
+SELECT p.loan_amt, p.acct_id, p.cust_id,p.acct_branch_add_id, s.loan_status_id, l.loan_id, p.payment_id
+FROM [dbo].[stg_p1] AS p
+INNER JOIN t_loan_status_dim AS s ON s.loan_status_id = p.acct_id
+INNER JOIN dbo.t_loan_dim tld AS l ON l.loan_id = p.acct_id
+INNER JOIN t_payment_dim p ON p.payment_id  = p.acct_id
+
+
+CREATE TABLE t_loan_amt_fact
+(loan_amt_fact INT IDENTITY(1, 2) PRIMARY KEY NOT NULL
+, acct_id       INT NOT NULL
+, loan_amt      DECIMAL(20, 4) NOT NULL
+);
+
+INSERT INTO t_loan_amt_fact(acct_id
+                          , loan_amt)
+SELECT acct_id
+     , loan_amt
+  FROM dbo.stg_p1;

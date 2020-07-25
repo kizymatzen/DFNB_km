@@ -8,7 +8,8 @@ SUPPORT: Kizy Matzenbacher
 MODIFICATION LOG:
 Ver   Date        Author    Description
 ---   ----------  -------   -----------------------------------------------------------------
-1.0   07/20/2020  KIZYMATZEN   1. Created the script
+1.0   07/19/2020  KIZYMATZEN   1. Created the script
+1.2   07/25/2020  KIZYMATZEN   1. Updated the script
 
 RUNTIME: 
 1 min
@@ -22,6 +23,7 @@ the freedom to run, study, share, and modify the code. This license grants the r
 of the code the rights of the Free Software Definition. All derivative work can only be
 distributed under the same license terms.
 ********************************************************************************************/
+
 USE [DFNB2]
 SELECT *
 FROM [dbo].[v_rev_area_yr]
@@ -55,4 +57,10 @@ ORDER BY 1;
 USE [DFNB2]
 SELECT *
 FROM [dbo].[v_top10_no_loan_2019]
+ORDER BY 2 DESC;
+
+/*******************************************************************************************/
+USE [DFNB2]
+SELECT *
+FROM [dbo].[v_bank_loan_int_yr]
 ORDER BY 2 DESC;
